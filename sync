@@ -17,16 +17,28 @@ fi
 
 # Sync source
 repo init --depth=1 --no-repo-verify -u https://github.com/DerpFest-AOSP/manifest.git -b 13 -g default,-mips,-darwin,-notdefault
-git clone https://github.com/wHo-EM-i/manifest.git --depth 1 -b derp .repo/local_manifests
+git clone https://github.com/wHo-EM-i/manifest.git --depth 1 -b 13-4.19-common .repo/local_manifests
 
 # Sync source without unnecessary messages, try with -j16 first, if fails, it will try again
 repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j16 || repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j10
 
+# clo-powerhal
+rm -rf /tmp/rom/vendor/qcom/opensource/power
+git clone --depth=1 https://github.com/wHo-EM-i/android_vendor_qcom-opensource_power -b topaz /tmp/rom/vendor/qcom/opensource/power
+
 # tree
-git clone --depth=1 https://wHo-EM-i:$my_og_token@github.com/wHo-EM-i/device_xiaomi_lavender -b T-4.19-test device/xiaomi/lavender
-rm -rf /tmp/rom/device/xiaomi/lavender/libhidl
-#sed -i 's/CONFIG_LLVM_POLLY=y/# CONFIG_LLVM_POLLY is not set/' kernel/xiaomi/sdm660/arch/arm64/configs/lavender_defconfig
-#git clone --depth=1 https://gitlab.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-r433403b.git -b 12.0 prebuilts/clang/host/linux-x86/clang-r433403b
+git clone --depth=1 https://wHo-EM-i:$my_og_token@github.com/wHo-EM-i/android_device_xiaomi_lavender -b derp /tmp/rom/device/xiaomi/lavender
+# cmn-tree
+git clone --depth=1 https://wHo-EM-i:$my_og_token@github.com/wHo-EM-i/device_sdm660-common -b 13-4.19 /tmp/rom/device/xiaomi/sdm660-common
+#los-shit
+rm -rf /tmp/rom/device/xiaomi/sdm660-common/libhidl
+
+#hals
+rm -rf /tmp/rom/hardware/qcom-caf/sdm660
+git clone --depth=1 https://github.com/wHo-EM-i/android_hardware_qcom_audio /tmp/rom/hardware/qcom-caf/sdm660/audio -b 13-caf-sdm660
+git clone --depth=1 https://github.com/wHo-EM-i/android_hardware_qcom_display /tmp/rom/hardware/qcom-caf/sdm660/display -b 13-caf_4.19
+git clone --depth=1 https://github.com/wHo-EM-i/android_hardware_qcom_media /tmp/rom/hardware/qcom-caf/sdm660/media -b 13-caf-sdm660
+
 
 # patch
 cd /tmp/rom/system/libhidl && curl https://github.com/ArrowOS/android_system_libhidl/commit/fbdf10a33f546d202ae12b4b864177fea9faa998.patch | git am
