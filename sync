@@ -16,7 +16,7 @@ bash ~/git_cookies.sh
 fi
 
 # Sync source
-repo init --depth=1 --no-repo-verify -u https://github.com/DerpFest-AOSP/manifest.git -b 13 -g default,-mips,-darwin,-notdefault
+repo init --depth=1 --no-repo-verify -u https://git.libremobileos.com/LMODroid/manifest.git -b thirteen -g default,-mips,-darwin,-notdefault
 git clone https://github.com/wHo-EM-i/manifest.git --depth 1 -b 13-4.19-common .repo/local_manifests
 
 # Sync source without unnecessary messages, try with -j16 first, if fails, it will try again
@@ -27,7 +27,7 @@ rm -rf /tmp/rom/vendor/qcom/opensource/power
 git clone --depth=1 https://github.com/wHo-EM-i/android_vendor_qcom-opensource_power -b topaz /tmp/rom/vendor/qcom/opensource/power
 
 # tree
-git clone --depth=1 https://wHo-EM-i:$my_og_token@github.com/wHo-EM-i/android_device_xiaomi_lavender -b derp /tmp/rom/device/xiaomi/lavender
+git clone --depth=1 https://wHo-EM-i:$my_og_token@github.com/wHo-EM-i/android_device_xiaomi_lavender -b lmodroid /tmp/rom/device/xiaomi/lavender
 # cmn-tree
 git clone --depth=1 https://wHo-EM-i:$my_og_token@github.com/wHo-EM-i/device_sdm660-common -b 13-4.19 /tmp/rom/device/xiaomi/sdm660-common
 #los-shit

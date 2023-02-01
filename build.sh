@@ -1,11 +1,11 @@
 # Normal build steps
 . build/envsetup.sh
-lunch derp_lavender-userdebug
+lunch lmodroid_lavender-userdebug
 
 # export variable here
 export TZ=Asia/Kolkata
 export SELINUX_IGNORE_NEVERALLOWS=true
 
 compile_plox () {
-make derp -j12
+make bacon -j12
 }
