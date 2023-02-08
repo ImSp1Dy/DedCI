@@ -16,17 +16,23 @@ bash ~/git_cookies.sh
 fi
 
 # Sync source
-repo init --depth=1 --no-repo-verify -u https://github.com/ImSpiDy/android_manifest -b eas -g default,-mips,-darwin,-notdefault
+repo init --depth=1 --no-repo-verify -u https://github.com/xdroid-CAF/xd_manifest -b eleven -g default,-mips,-darwin,-notdefault
 #git clone https://github.com/wHo-EM-i/manifest.git --depth 1 -b arrow-4.19 .repo/local_manifests
 
 # Sync source without unnecessary messages, try with -j30 first, if fails, it will try again
 repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j10 || repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j10
 
 # tree
-git clone --depth=1 https://ImSpiDy:$my_og_token@github.com/ImSpiDy/device_xiaomi_lavender device/xiaomi/lavender -b eas
-git clone --depth=1 https://ImSpiDy:$my_og_token@github.com/ImSpiDy/vendor_xiaomi_lavender vendor/xiaomi/lavender -b eas
-git clone --depth=1 https://github.com/projects-nexus/xtreme_kernel_lavender-4.4 kernel/xiaomi/lavender -b oldcam
-git clone --depth=1 https://github.com/LineageOS/android_hardware_lineage_livedisplay hardware/lineage/livedisplay -b lineage-17.1
+git clone --depth=1 https://ImSpiDy:$my_og_token@github.com/ImSpiDy/device_xiaomi_lavender device/xiaomi/lavender -b 11
+git clone --depth=1 https://github.com/xenxynon/xd_vt vendor/xiaomi/lavender -b 11
+git clone --depth=1 https://github.com/ImSpiDy/kernel_xiaomi_lavender-4.4 kernel/xiaomi/lavender -b qti-oldcam
+#git clone --depth=1 https://github.com/LineageOS/android_hardware_lineage_livedisplay hardware/lineage/livedisplay -b lineage-17.1
+
+# fwb
+cd /tmp/rom/frameworks/base && curl https://github.com/404-Mess/arrow_fwb/commit/55c53f9dccef7d241f2ce8d5adde97551de6d81f.patch | git am
+cd /tmp/rom/frameworks/base && curl https://github.com/Project-Awaken/android_frameworks_base/commit/99769e061cac5dd318094eef1f16bee0c8291969.patch | git am
+cd /tmp/rom/frameworks/base && curl https://github.com/Project-Awaken/android_frameworks_base/commit/2d2f16186e3a8b16ee942801b517e7a3f56ebebf.patch | git am
+cd /tmp/rom/frameworks/base && curl https://github.com/Project-Awaken/android_frameworks_base/commit/084c13c8216f6a899cd3eda04fc1d7acff3d1248.patch | git am
 
 # patch
 #cd /tmp/rom/system/libhidl && curl https://github.com/ArrowOS/android_system_libhidl/commit/fbdf10a33f546d202ae12b4b864177fea9faa998.patch | git am
