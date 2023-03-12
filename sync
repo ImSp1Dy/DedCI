@@ -32,10 +32,8 @@ git clone --depth=1 https://github.com/ImSpiDy/kernel_xiaomi_lavender-4.4 kernel
 git clone --depth=1 https://gitlab.com/Project-Nexus/nexus-clang.git -b nexus-14 /tmp/rom/prebuilts/clang/host/linux-x86/nexus-clang
 
 # fwb
-cd /tmp/rom/frameworks/base && curl https://github.com/404-Mess/arrow_fwb/commit/55c53f9dccef7d241f2ce8d5adde97551de6d81f.patch | git am
-cd /tmp/rom/frameworks/base && curl https://github.com/Project-Awaken/android_frameworks_base/commit/99769e061cac5dd318094eef1f16bee0c8291969.patch | git am
-cd /tmp/rom/frameworks/base && curl https://github.com/Project-Awaken/android_frameworks_base/commit/2d2f16186e3a8b16ee942801b517e7a3f56ebebf.patch | git am
-cd /tmp/rom/frameworks/base && curl https://github.com/Project-Awaken/android_frameworks_base/commit/084c13c8216f6a899cd3eda04fc1d7acff3d1248.patch | git am
+rm -rf /tmp/rom/frameworks/base
+git clone --depth=1 https://github.com/XenStuff/xd_frameworks_base /tmp/rom/frameworks/base -b eleven 
 
 # patch
 #cd /tmp/rom/system/libhidl && curl https://github.com/ArrowOS/android_system_libhidl/commit/fbdf10a33f546d202ae12b4b864177fea9faa998.patch | git am
