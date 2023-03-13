@@ -1,6 +1,6 @@
 # Normal build steps
 . build/envsetup.sh
-lunch xdroid_lavender-userdebug
+lunch xdroid_lavender-user
 
 # export variable here
 export TZ=Asia/Kolkata
