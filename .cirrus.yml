@@ -14,7 +14,7 @@ env: # Environment variables to pass to all tasks
     gmail: ehteshammalik18998@gmail.com
 
 task:
-    name: rdc
+    name: rdc_caf
     timeout_in: 120m
     container:
       image: aarunalr/aosp-build
